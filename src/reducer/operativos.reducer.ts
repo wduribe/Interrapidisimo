@@ -25,6 +25,7 @@ export const initialState: OperativosState = {
 export type OperativosActions =
     { type: 'ingreso-nacional-cargue', payload: { cargueNacional: IngresoOperativoCarguePayload } } |
     { type: 'despacho-nacional-cargue', payload: { despachoNacionalCargue: DespachoOperativoCargueFormPayload, operativoId: string } } |
+
     { type: 'ingreso-nacional-descargue', payload: { descargueNacional: IngresoOperativoDescarguePayload } } |
     { type: 'asignar-muelle-descargue-nacional', payload: { id: string, muelleDescargue: string } } |
     { type: 'despacho-nacional-sin-carga', payload: { id: string, novedad: string } } |
@@ -41,14 +42,13 @@ export type OperativosActions =
     { type: 'ingreso-urbano-descargue', payload: { descargueUrbano: IngresoUrbanoDescarguePayload } } |
     { type: 'asignar-muelle-descargue-urbano', payload: { id: string, muelleDescargue: string } } |
     { type: 'despacho-urbano-sin-carga', payload: { id: string, novedad: string } } |
-    { type: 'filtrar', payload: { fecha: number, operativo: string, objetivo: string } }
+    { type: 'filtrar', payload: { fecha: number | string, operativo: string, objetivo: string } }
 
 
 export const operativosReducer = (state: OperativosState, action: OperativosActions) => {
 
     switch (action.type) {
 
-        //* Dispatch nacionales
         case 'ingreso-nacional-cargue':
             return { ...state, carguesNacionales: [...state.carguesNacionales, action.payload.cargueNacional] };
 
@@ -218,7 +218,7 @@ export const operativosReducer = (state: OperativosState, action: OperativosActi
             };
 
         case 'filtrar':
-            return { ...state, filtro: action.payload }
+            return { ...state, filtro: { ...state.filtro, ...action.payload } }
 
         default: return state;
     }

@@ -48,7 +48,7 @@ export const FormCargueNacional = () => {
       type: 'ingreso-nacional-cargue',
       payload: {
         cargueNacional: form,
-      }
+      } 
     });
 
     reset();

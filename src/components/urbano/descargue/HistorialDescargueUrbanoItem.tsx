@@ -7,7 +7,7 @@ export const HistorialDescargueUrbanoItem = () => {
 
     const { state } = useOperativosContext();
 
-    const operativoFiltered = state.descarguesUrbanos.filter(operativo => (Date.parse(operativo.fechaHoraIngreso.split(',')[0])) === state.filtro.fecha && !operativo.enBodega)
+    const operativoFiltered = state.descarguesUrbanos.filter(operativo => (operativo.fechaHoraIngreso.split(',')[0]) === state.filtro.fecha && !operativo.enBodega)
     const isEmpty = useMemo(() => operativoFiltered.length === 0, [operativoFiltered]);
 
     return (

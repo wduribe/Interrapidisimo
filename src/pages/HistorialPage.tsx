@@ -33,8 +33,8 @@ export const HistorialPage = () => {
   const agregarFiltro = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const fechaInput = Date.parse(form.fecha.toLocaleString('es-CO').split(',')[0]);
-
+    const fechaInput = form.fecha.toLocaleString('es-CO').split(',')[0]
+    
     if (!form.fecha || form.objetivo === '' || form.operativo === '') {
       toast.error('Debe llenar todos los campos del filtro');
       return;

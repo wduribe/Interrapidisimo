@@ -6,7 +6,8 @@ export const HistorialCargueNacionalItem = () => {
 
     const { state } = useOperativosContext();
 
-    const operativoFiltered = state.carguesNacionales.filter(operativo => (Date.parse(operativo.fechaHoraIngreso.split(',')[0])) === state.filtro.fecha && !operativo.enBodega)
+    const operativoFiltered = state.carguesNacionales.filter(operativo => (operativo.fechaHoraIngreso.split(',')[0]) === state.filtro.fecha && !operativo.enBodega)
+
     const isEmpty = useMemo(() => operativoFiltered.length === 0, [operativoFiltered]);
 
     return (
